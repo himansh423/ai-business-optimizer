@@ -1,10 +1,9 @@
-import HomePage from "@/components/ui/HomePage"
-
+import Register from "@/components/Register"
 
 const page = () => {
   return (
     <div>
-      <HomePage/>
+      <Register/>
     </div>
   )
 }
