@@ -1,10 +1,10 @@
-import HomePage from "@/components/ui/HomePage"
+import LandingPage from "@/components/LandingPage"
 
 
 const page = () => {
   return (
     <div>
-      <HomePage/>
+      <LandingPage/>
     </div>
   )
 }

@@ -1,6 +1,6 @@
-import { auth } from "../../../auth"
+import { auth } from "../../auth"
 
-const HomePage = async () => {
+const LandingPage = async () => {
   const session = await auth();
 
   console.log("Home -> Session: ", session);
@@ -11,4 +11,4 @@ const HomePage = async () => {
   )
 }
 
-export default HomePage
+export default LandingPage

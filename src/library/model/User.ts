@@ -6,6 +6,15 @@ const userSchema = new mongoose.Schema({
   password: { type: String, select: false },
   googleId: { type: String },
   image: { type: String },
+  otp: {
+    type: String,
+  },
+  isVerified: {
+    type: Boolean,
+  },
+  isLoginVerified: {
+    type: Boolean,
+  },
   business: { type: mongoose.Schema.Types.ObjectId, ref: "Business" },
 });
 
