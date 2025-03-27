@@ -34,9 +34,10 @@ const businessSchema = new mongoose.Schema({
   operatingHours: { type: String },
   Ameneities: { type: String },
   googleBusinessProfile: { type: String },
-  onlineOrderingPlatforms:[{ type: String }],
+  onlineOrderingPlatforms: [{ type: String }],
   revenue: { type: String },
 });
 
-const Business = mongoose.models.Business || mongoose.model("Business", businessSchema);
+const Business =
+  mongoose.models.Business || mongoose.model("Business", businessSchema);
 export default Business;
