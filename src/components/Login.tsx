@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import GoogleLoginButton from "./GoogleLoginButton";
 
 const Login = () => {
   const router = useRouter();
@@ -38,14 +39,6 @@ const Login = () => {
     }
   };
 
-  const handleGoogleSignIn = async () => {
-    try {
-      await signIn("google", { callbackUrl: "/dashboard" });
-    } catch (error) {
-      console.error("Google Sign-In Error:", error);
-    }
-  };
-
   return (
     <div className="w-screen h-screen flex justify-center items-center">
       <Card>
@@ -60,16 +53,7 @@ const Login = () => {
           </form>
         </CardContent>
         <CardContent>
-          <form action="" className="flex flex-col gap-2 items-center">
-            <span>or</span>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleGoogleSignIn}
-            >
-              Login with Google
-            </Button>
-          </form>
+          <GoogleLoginButton />
           <Link href="/auth/register" className="mt-2">
             Don't have an account? Register
           </Link>
