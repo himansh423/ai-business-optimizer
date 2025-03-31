@@ -24,7 +24,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const isMatch = await compare(password, user.password);
 
         if (!isMatch) throw new CredentialsSignin("Invalid email or password");
-        console.log("User", user);
         return { email: user.email, name: user.name, id: user._id };
       },
     }),

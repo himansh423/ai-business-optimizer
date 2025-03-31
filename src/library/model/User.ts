@@ -12,9 +12,6 @@ const userSchema = new mongoose.Schema({
   isVerified: {
     type: Boolean,
   },
-  isLoginVerified: {
-    type: Boolean,
-  },
   business: { type: mongoose.Schema.Types.ObjectId, ref: "Business" },
 });
 
