@@ -3,14 +3,7 @@ import connectToDatabase from "@/library/database/db";
 import User from "@/library/model/User";
 
 export async function POST(req: Request) {
-  try {
-    await connectToDatabase();
-  } catch (err) {
-    return NextResponse.json(
-      { success: false, message: "Database connection failed" },
-      { status: 500 }
-    );
-  }
+  await connectToDatabase();
 
   try {
     const { email, otp } = await req.json();

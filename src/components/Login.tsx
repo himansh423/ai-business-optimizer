@@ -126,7 +126,7 @@ const Login = () => {
         <div
           className={`${inter.className} text-[14px] flex items-center gap-1 text-[#a1a1aa] justify-center mt-5`}
         >
-          <p>Don't have an account?</p>
+          <p>Don&apos;t have an account?</p>
           <Link className="text-[#6D28D9]" href={"/auth/register"}>
             Register
           </Link>

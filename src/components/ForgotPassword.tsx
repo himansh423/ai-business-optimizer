@@ -1,6 +1,5 @@
 "use client"
 import axios from "axios"
-import { Rowdies } from "next/font/google"
 import { Mail } from "lucide-react"
 import { useDispatch, useSelector } from "react-redux"
 import type { z } from "zod"

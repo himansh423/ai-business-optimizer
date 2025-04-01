@@ -98,7 +98,7 @@ export default function Verify() {
 
         <div className="mt-6 text-center">
           <p className="text-gray-400 text-sm">
-            Didn't receive the code?{" "}
+            Didn&apos;t receive the code?{" "}
             <button className="text-[#8b5cf6] hover:text-[#7c3aed]">
               Resend code
             </button>
