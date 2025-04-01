@@ -13,7 +13,6 @@ import { emailActions } from "@/redux/emailSlice";
 import { signIn } from "next-auth/react";
 import { inter } from "@/constants/fonts";
 
-
 type UserData = z.infer<typeof User>;
 const Register = () => {
   const dispatch = useDispatch();
@@ -29,6 +28,7 @@ const Register = () => {
       email: "",
       password: "",
       confirmPassword: "",
+      isAgreement: false,
     },
     resolver: zodResolver(User),
   });
@@ -153,6 +153,7 @@ const Register = () => {
             <input
               type="checkbox"
               id="terms"
+              {...register("isAgreement")}
               className="h-4 w-4 rounded border-gray-300"
             />
             <p className="text-[#a1a1aa]">
@@ -166,6 +167,9 @@ const Register = () => {
               </Link>
             </p>
           </div>
+          {errors.isAgreement && (
+            <p style={{ color: "orangered" }}>{errors.isAgreement.message}</p>
+          )}
 
           <button className="w-full h-[40px] text-[#fafafa]  bg-[#6D28D9] rounded-lg cursor-pointer">
             <p className={`${inter.className} text-[14px]`}>

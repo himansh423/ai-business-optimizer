@@ -21,17 +21,16 @@ export async function POST(req: Request) {
     const hashedPassword = await bcrypt.hash(password, 12);
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    
     const newUser = new User({
       name,
       email,
       password: hashedPassword,
       otp,
-      isVerified: false, 
+      isVerified: false,
+      isAgreement: true,
     });
 
     await newUser.save();
-
 
     await sendEmail({
       to: email,
@@ -49,7 +48,6 @@ export async function POST(req: Request) {
         </div>
       `,
     });
-
 
     setTimeout(async () => {
       const user = await User.findOne({ email });

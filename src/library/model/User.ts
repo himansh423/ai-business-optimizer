@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema({
   isVerified: {
     type: Boolean,
   },
+  isAgreement: {
+    type: Boolean,
+    required:true
+  },
   business: { type: mongoose.Schema.Types.ObjectId, ref: "Business" },
 });
 
