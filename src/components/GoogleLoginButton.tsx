@@ -1,6 +1,6 @@
 "use client";
 import { signIn } from "next-auth/react";
-import { Button } from "./ui/button";
+
 
 const GoogleLoginButton = () => {
   const googleLogin = async () => {
@@ -10,9 +10,9 @@ const GoogleLoginButton = () => {
   return (
     <div className="flex flex-col gap-2 items-center">
       <span>or</span>
-      <Button onClick={googleLogin} variant="outline">
+      <button onClick={googleLogin}>
         Login with Google
-      </Button>
+      </button>
     </div>
   );
 };
