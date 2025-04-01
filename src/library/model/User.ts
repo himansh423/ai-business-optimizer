@@ -14,8 +14,10 @@ const userSchema = new mongoose.Schema({
   },
   isAgreement: {
     type: Boolean,
-    required:true
+    required: true,
   },
+  resetPasswordToken: { type: String },
+  resetPasswordExpires: { type: Date },
   business: { type: mongoose.Schema.Types.ObjectId, ref: "Business" },
 });
 
