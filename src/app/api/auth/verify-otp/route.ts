@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+import * as cookie from "cookie";
 import { NextResponse } from "next/server";
 import connectToDatabase from "@/library/database/db";
 import User from "@/library/model/User";
@@ -21,9 +23,30 @@ export async function POST(req: Request) {
     user.otp = undefined;
     await user.save();
 
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        name: user.name,
+        email: user.email,
+      },
+      process.env.JWT_SECRET as string,
+      { expiresIn: "7d" }
+    );
+
     const response = NextResponse.json(
       { success: true, message: "OTP verified, Registration successful" },
       { status: 200 }
+    );
+
+    response.headers.set(
+      "Set-Cookie",
+      cookie.serialize("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 7 * 24 * 60 * 60,
+        sameSite: "strict",
+        path: "/",
+      })
     );
 
     return response;

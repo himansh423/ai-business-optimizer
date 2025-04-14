@@ -57,8 +57,12 @@ const Login = () => {
     }
   };
   const googleSignup = async () => {
-    await signIn("google", { callbackUrl: "/" });
-  };
+    try {
+      window.location.href = "/api/auth/google"
+    } catch (error) {
+      console.error("Google signup error:", error)
+    }
+  }
   return (
     <div className="w-screen h-screen flex justify-center items-center">
       <div

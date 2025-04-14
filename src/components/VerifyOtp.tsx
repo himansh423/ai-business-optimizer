@@ -44,7 +44,7 @@ export default function Verify() {
         otp: enteredOtp,
       });
       if (res.data.success) {
-        router.push("/auth/login");
+        router.push("/");
       } else {
         setError(res.data.message || "Invalid OTP");
       }
