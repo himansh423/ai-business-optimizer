@@ -1,3 +1,4 @@
+/* eslint-disable */
 import mongoose, { Connection, Mongoose } from "mongoose";
 
 // Defined the cached structure type

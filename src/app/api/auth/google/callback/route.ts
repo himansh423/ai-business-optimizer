@@ -6,7 +6,12 @@ import { sendEmail } from "@/library/sendMail/sendMail";
 import jwt from "jsonwebtoken";
 
 // Token generation function
-function generateAuthToken(user: any) {
+
+interface User {
+  _id: string;
+  email: string;
+}
+function generateAuthToken(user: User) {
   return jwt.sign(
     {
       id: user._id.toString(), // Ensure ID is a string
@@ -142,9 +147,8 @@ export async function GET(request: NextRequest) {
         const newUser = new User({
           name: userData.name,
           email: userData.email,
-          // No password for Google users
           googleId: userData.id,
-          isVerified: true, // Google users are pre-verified
+          isVerified: true,
           isAgreement: true,
         });
 
