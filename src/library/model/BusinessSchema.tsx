@@ -7,12 +7,17 @@ const businessSocialMediaSchema = new mongoose.Schema(
     businessTwitter: { type: String },
     businessLinkedin: { type: String },
     businessYoutube: { type: String },
-    businessTiktok: { type: String },
     businessPinterest: { type: String },
   },
   { _id: false }
 );
 
+const businessPhoneSchema = new mongoose.Schema({
+  countryCode: { type: String },
+  number: {
+    type: String,
+  },
+});
 const businessSchema = new mongoose.Schema({
   businessBy: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
   businessName: { type: String, required: true },
@@ -20,12 +25,12 @@ const businessSchema = new mongoose.Schema({
   businessDescription: { type: String },
   businessAddress: { type: String },
   businessCity: { type: String },
-  businessExteriorImage: { type: String },
-  businessInteriorImage: { type: String },
-  businessProductImage: { type: String },
+  businessExteriorImage: [{ type: String }],
+  businessInteriorImage: [{ type: String }],
+  businessProductImage: [{ type: String }],
   businessProductDescription: { type: String },
   businessWebsite: { type: String },
-  businessPhone: { type: String },
+  businessPhone: { type: businessPhoneSchema },
   businessEmail: { type: String },
   businessSocialMedia: { type: businessSocialMediaSchema },
   establishedDate: { type: Date },

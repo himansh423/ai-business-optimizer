@@ -6,6 +6,7 @@ interface BusinessSetupFormState {
   orderingPlatforms: string[];
   date: string | undefined;
   selectedCountryCode: string;
+
 }
 const initialState: BusinessSetupFormState = {
   businessCategories: [],
@@ -13,6 +14,7 @@ const initialState: BusinessSetupFormState = {
   orderingPlatforms: [],
   date: undefined,
   selectedCountryCode: "+1",
+  
 };
 const businessSetupFormSlice = createSlice({
   name: "businessSetupForm",
@@ -38,6 +40,7 @@ const businessSetupFormSlice = createSlice({
       const { data } = action.payload;
       state.selectedCountryCode = data;
     },
+    
   },
 });
 
