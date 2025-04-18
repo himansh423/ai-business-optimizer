@@ -11,18 +11,45 @@ const s3Client = new S3Client({
   },
 });
 
+type Category = "exterior" | "interior" | "productImages";
+
+type UploadFile = {
+  name: string;
+  type: string;
+};
+
 export async function POST(req: Request) {
   try {
-    const { exterior = [], interior = [], productImages = [] } = await req.json();
+    const {
+      exterior = [],
+      interior = [],
+      productImages = [],
+    }: {
+      exterior: UploadFile[];
+      interior: UploadFile[];
+      productImages: UploadFile[];
+    } = await req.json();
 
-    const allFiles = [
-      ...exterior.map((file: any) => ({ ...file, category: "exterior" })),
-      ...interior.map((file: any) => ({ ...file, category: "interior" })),
-      ...productImages.map((file: any) => ({ ...file, category: "productImages" })),
+    const allFiles: (UploadFile & { category: Category })[] = [
+      ...exterior.map((file) => ({
+        ...file,
+        category: "exterior" as Category,
+      })),
+      ...interior.map((file) => ({
+        ...file,
+        category: "interior" as Category,
+      })),
+      ...productImages.map((file) => ({
+        ...file,
+        category: "productImages" as Category,
+      })),
     ];
 
     if (allFiles.length === 0) {
-      return NextResponse.json({ error: "No files provided." }, { status: 400 });
+      return NextResponse.json(
+        { error: "No files provided." },
+        { status: 400 }
+      );
     }
 
     const uploads = await Promise.all(
@@ -36,12 +63,14 @@ export async function POST(req: Request) {
           ContentType: file.type,
         });
 
-        const uploadUrl = await getSignedUrl(s3Client, command, { expiresIn: 60 });
+        const uploadUrl = await getSignedUrl(s3Client, command, {
+          expiresIn: 60,
+        });
 
         return {
           uploadUrl,
           key,
-          originalFileName: file.name, 
+          originalFileName: file.name,
           category: file.category,
         };
       })
@@ -50,6 +79,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ uploads });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Failed to generate presigned URLs." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to generate presigned URLs." },
+      { status: 500 }
+    );
   }
 }

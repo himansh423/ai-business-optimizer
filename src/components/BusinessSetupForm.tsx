@@ -61,7 +61,6 @@ const BusinessSetupForm = () => {
   const [interiorFiles, setInteriorFiles] = useState<File[]>([]);
   const [productImages, setProductImages] = useState<File[]>([]);
 
-
   const form = useForm<FormValues>({
     resolver: zodResolver(businessForm),
     defaultValues: {
@@ -93,9 +92,7 @@ const BusinessSetupForm = () => {
     mode: "onChange",
   });
 
-  
   const businessType = form.watch("businessType");
-
 
   useEffect(() => {
     if (date) {
@@ -109,10 +106,8 @@ const BusinessSetupForm = () => {
     }
   }, [selectedCountryCode, form]);
 
-
   useEffect(() => {
     if (businessType === "Online") {
-      
       if (exteriorFiles.length > 0 || interiorFiles.length > 0) {
         setExteriorFiles([]);
         setInteriorFiles([]);
@@ -187,25 +182,6 @@ const BusinessSetupForm = () => {
         data: orderingPlatforms.filter((p) => p !== platform),
       })
     );
-  };
-
-  // Handle file uploads with max 3 files per input
-  const handleFileChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    setter: React.Dispatch<React.SetStateAction<File[]>>,
-    currentFiles: File[]
-  ) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const newFiles = Array.from(e.target.files);
-      const totalFiles = [...currentFiles, ...newFiles];
-
-      if (totalFiles.length > 3) {
-        alert("You can only upload a maximum of 3 images");
-        return;
-      }
-
-      setter(totalFiles);
-    }
   };
 
   // Remove a file from the list
@@ -417,7 +393,7 @@ const BusinessSetupForm = () => {
             <input
               type="text"
               {...form.register("businessName")}
-              placeholder="e.g. John's Coffee Shop"
+              placeholder="e.g. John&apos;s Coffee Shop"
               className={`w-full h-[45px] bg-transparent rounded-md text-[14px] ${
                 borderColor.OnePx
               } ${
@@ -575,7 +551,7 @@ const BusinessSetupForm = () => {
                   </p>
                 )}
                 <p className={`${inter.className} text-[12px] text-[#a1a1aa]`}>
-                  We'll use this to analyze nearby competitors and local market
+                  We&apos;ll use this to analyze nearby competitors and local market
                   trends
                 </p>
               </div>
